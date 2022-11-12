@@ -32,12 +32,13 @@ class RandomWords extends StatefulWidget {
   const RandomWords({super.key});
 
   @override
-  State<RandomWords> createState() => _RandomWordstState();
+  State<RandomWords> createState() => _RandomWordsState();
 }
 
-class _RandomWordstState extends State<RandomWords> {
+class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18);
+  final _saved = <WordPair>{}; // NEW
+  final _biggerFont = TextStyle(fontSize: 18);
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +51,17 @@ class _RandomWordstState extends State<RandomWords> {
         if (index >= _suggestions.length) {
           _suggestions.addAll(generateWordPairs().take(10)); /*4*/
         }
+        final alreadySaved = _saved.contains(_suggestions[index]); // NEW
         return ListTile(
           title: Text(
             _suggestions[index].asPascalCase,
             style: _biggerFont,
+          ),
+          trailing: Icon(
+            // NEW from here ...
+            alreadySaved ? Icons.favorite : Icons.favorite_border,
+            color: alreadySaved ? Colors.red : null,
+            semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
           ),
         );
       },
