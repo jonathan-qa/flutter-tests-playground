@@ -38,7 +38,7 @@ jobs:
     - run: ls
     - run: cd mirror-test
     - run: pwd
-    - run: ls
+    - run: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk --debug --split-per-abi
