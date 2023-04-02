@@ -35,7 +35,8 @@ jobs:
       with:
         flutter-version: '3.3.8'
     - run: pwd
-    - run: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+    - run: |
+        ls -la
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk --debug --split-per-abi
