@@ -35,6 +35,10 @@ jobs:
       with:
         flutter-version: '3.3.8'
     - run: pwd
+    - run: ls
+    - run: cd mirror-test
+    - run: pwd
+    - run: ls
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk --debug --split-per-abi
